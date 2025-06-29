@@ -74,13 +74,13 @@ resource "azurerm_linux_virtual_machine" "web_vm" {
   network_interface_ids = [
     # Use the element function to get the correct NIC for each VM instance
     # This allows for multiple VMs to be created with unique NICs
-    # element([azurerm_network_interface.web_nic[*].id], count.index),
+    # element([azurerm_network_interface.web_nic[*].id], count.index)
     azurerm_network_interface.web_nic[each.key].id,
   ]
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("./keys/my-key.pem")
+    public_key = file("~/.ssh/id_rsa.pub")
   }
 
   os_disk {
