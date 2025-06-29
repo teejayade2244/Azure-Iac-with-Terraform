@@ -32,6 +32,21 @@ resource "azurerm_network_interface" "web_nic" {
   location            = azurerm_resource_group.my_resource_group.location
   resource_group_name = azurerm_resource_group.my_resource_group.name
   tags = local.common_tags
+
+    dynamic "security_rule" {
+    for_each = var.web_vmss_nsg_inbound_ports
+    content {
+      name                       = "Allow-${security_rule.value}-Inbound"
+      priority                   = 100 + index(var.web_vmss_nsg_inbound_ports, security_rule.value)
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*"
+      destination_port_range     = security_rule.value
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
+    }
+  }
 }
 
 resource "azurerm_network_interface_security_group_association" "web_nic_nsg_association" {
@@ -41,28 +56,28 @@ resource "azurerm_network_interface_security_group_association" "web_nic_nsg_ass
   network_security_group_id = azurerm_network_security_group.web_vmnic_nsg[each.key].id
 }
 
-locals {
-  web_nic_inbound_ports = {
-    "100" :  "22"
-    "110" : "80"
-    "120" = "443"
-  }
-}
-# when starting a map with number make sure to use colon (:) instead of equals (=)
-resource "azurerm_network_security_rule" "web_nic_nsg_rule" {
-  for_each = local.web_inbound_ports
-  name                        = "Allow-${each.value}-Inbound"
-  priority                    = each.key
-  direction                   = "Inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = each.value
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = azurerm_resource_group.my_resource_group.name
-  network_security_group_name = azurerm_network_security_group.web_vmnic_nsg[each.key].name
-}
+# locals {
+#   web_nic_inbound_ports = {
+#     "100" :  "22"
+#     "110" : "80"
+#     "120" = "443"
+#   }
+# }
+# # when starting a map with number make sure to use colon (:) instead of equals (=)
+# resource "azurerm_network_security_rule" "web_nic_nsg_rule" {
+#   for_each = local.web_inbound_ports
+#   name                        = "Allow-${each.value}-Inbound"
+#   priority                    = each.key
+#   direction                   = "Inbound"
+#   access                      = "Allow"
+#   protocol                    = "Tcp"
+#   source_port_range           = "*"
+#   destination_port_range      = each.value
+#   source_address_prefix       = "*"
+#   destination_address_prefix  = "*"
+#   resource_group_name         = azurerm_resource_group.my_resource_group.name
+#   network_security_group_name = azurerm_network_security_group.web_vmnic_nsg[each.key].name
+# }
 
 resource "azurerm_linux_virtual_machine" "web_vm" {
   # count = var.web_vm_instance_count

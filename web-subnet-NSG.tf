@@ -27,7 +27,6 @@ resource "azurerm_subnet" "web_subnet" {
       source_address_prefix      = "*"
       destination_address_prefix = "*"
     }
-    
   }
 }
 
@@ -37,13 +36,13 @@ resource "azurerm_subnet_network_security_group_association" "web_subnet_nsg_ass
   network_security_group_id = azurerm_network_security_group.web_subnet_nsg.id
 }
 
-locals {
-  web_inbound_ports = {
-    "100" :  "22"
-    "110" : "80"
-    "120" = "443"
-  }
-}
+# locals {
+#   web_inbound_ports = {
+#     "100" :  "22"
+#     "110" : "80"
+#     "120" = "443"
+#   }
+# }
 # when starting a map with number make sure to use colon (:) instead of equals (=)
 # resource "azurerm_network_security_rule" "web_subnet_nsg_rule" {
 #   for_each = local.web_inbound_ports
