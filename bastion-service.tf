@@ -1,5 +1,5 @@
 resource "azurerm_subnet" "bastion_subnet" {
-  name                 = "${var.bastion_subnet_name}"
+  name                 = "AzureBastionSubnet"
   resource_group_name  = azurerm_resource_group.my_resource_group.name
   virtual_network_name = azurerm_virtual_network.my_vnet.name
   address_prefixes     = var.bastion_subnet_address_prefix
