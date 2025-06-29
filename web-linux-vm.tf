@@ -97,7 +97,7 @@ resource "azurerm_linux_virtual_machine" "web_vm" {
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = file("my-key.pub")
   }
 
   os_disk {

@@ -23,7 +23,7 @@
 #     caching              = "ReadWrite"
 #   }
  
-#  upgrade_mode = "Automatic"
+#   upgrade_mode = "Automatic"
 #   tags = local.common_tags
 #   network_interface {
 #     name    = "web-vmss-nic"
@@ -34,6 +34,9 @@
 #       name      = "web-vmss-ipconfig"
 #       primary   = true
 #       subnet_id = azurerm_subnet.web_subnet.id
+#       load_balancer_backend_address_pool_ids = [
+#         azurerm_lb_backend_address_pool.web_lb_backend_pool.id
+#       ]
 #     }
 #   }
 # }
