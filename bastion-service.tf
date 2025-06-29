@@ -22,7 +22,7 @@ resource "azurerm_bastion_host" "bastion" {
 
   ip_configuration {
     name                 = "bastion-config"
-    subnet_id            = azurerm_subnet.bastion.id
+    subnet_id            = azurerm_subnet.bastion_subnet.id
     public_ip_address_id = azurerm_public_ip.bastion_pip.id
   }
 
