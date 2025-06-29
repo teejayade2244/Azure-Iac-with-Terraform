@@ -13,7 +13,7 @@ resource "azurerm_subnet" "web_subnet" {
   tags = local.common_tags
 
 # A dynamic block is used to generate repeated nested blocks (like security_rule) based on a list or map.
-# "For each value in var.web_vmss_nsg_inbound_ports, create a security_rule block with the given settings."
+# "For each value in var.web_vmss_nsg_inbound_ports, create a security_rule block with the given settings"
   dynamic "security_rule" {
     for_each = var.web_vmss_nsg_inbound_ports
     content {
