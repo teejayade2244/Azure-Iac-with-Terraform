@@ -46,10 +46,5 @@ variable "web_vm_instance_count" {
   type        = map(string)
 }
 
-variable "web_vmss_nsg_inbound_ports" {
-  description = "The number of web VMs to create."
-  type        = list(string)
-}
-
 
 

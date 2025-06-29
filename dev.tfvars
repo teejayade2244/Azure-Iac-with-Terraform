@@ -13,7 +13,7 @@ web_vm_instance_count = {
   "vm1" = "1",
   "vm2" = "2"
 }
-web_vmss_nsg_inbound_ports = [
+web_vm_nsg_inbound_ports = [
   "22",
   "80",
   "443"
