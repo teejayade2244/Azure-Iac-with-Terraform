@@ -27,7 +27,8 @@ resource "azurerm_network_interface" "web_nic" {
 }
 
  resource "azurerm_network_security_group" "web_vmnic_nsg" {
-  name                = "${azurerm_network_interface.web_nic.name}-nsg"
+  for_each = var.web_vm_instance_count
+  name                = "${azurerm_network_interface.web_nic[each.key].name}-nsg"
   location            = azurerm_resource_group.my_resource_group.location
   resource_group_name = azurerm_resource_group.my_resource_group.name
   tags = local.common_tags
@@ -35,8 +36,8 @@ resource "azurerm_network_interface" "web_nic" {
 
 resource "azurerm_network_interface_security_group_association" "web_nic_nsg_association" {
   depends_on = [ azurerm_network_security_rule.web_nic_nsg_rule ]
-  network_interface_id      = azurerm_network_interface.web_nic.id
-  network_security_group_id = azurerm_network_security_group.web_vmnic_nsg.id
+  network_interface_id      = azurerm_network_interface.web_nic[each.key].id
+  network_security_group_id = azurerm_network_security_group.web_vmnic_nsg[each.key].id
 }
 
 locals {
