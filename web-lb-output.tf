@@ -23,8 +23,8 @@ output "web_lb_rule_id" {
   value = azurerm_lb_rule.web_lb_rule.id
 }
 
-output "web_nic_backend_pool_association_id" {
-  description = "IDs of the backend address pool associations for the web NICs"
-  value = { for k, v in azurerm_network_interface_backend_address_pool_association.web_nic_backend_pool_association : k => v.id }
-}
+# output "web_nic_backend_pool_association_id" {
+#   description = "IDs of the backend address pool associations for the web NICs"
+#   value = { for k, v in azurerm_network_interface_backend_address_pool_association.web_nic_backend_pool_association : k => v.id }
+# }
 
