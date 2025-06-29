@@ -1,5 +1,5 @@
 resource_group_name = "my-resource-group"
-resource_group_location = "eastus2"
+resource_group_location = "ukwest"
 environment = "dev"
 vnet_name = "my-vnet"
 vnet_address_space = ["10.0.0.0/16"]
