@@ -72,9 +72,9 @@ resource "azurerm_network_interface" "web_nic" {
 }
 resource "azurerm_network_interface_security_group_association" "web_nic_nsg_association" {
   for_each = var.web_vm_instance_count
-  depends_on = [ azurerm_network_security_group.web_vmnic_nsg ]
+  depends_on = [ azurerm_network_security_group.web_vmss_nsg ]
   network_interface_id      = azurerm_network_interface.web_nic[each.key].id
-  network_security_group_id = azurerm_network_security_group.web_vmnic_nsg[each.key].id
+  network_security_group_id = azurerm_network_security_group.web_vmss_nsg[each.key].id
 }
 
 resource "azurerm_linux_virtual_machine_scale_set" "web_vmss" {
