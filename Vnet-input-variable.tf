@@ -41,10 +41,10 @@ variable "bastion_subnet_address_prefix" {
   type        = list(string)
 }
 
-variable "web_vm_instance_count" {
-  description = "The number of web VMs to create."
-  type        = map(string)
-}
+# variable "web_vm_instance_count" {
+#   description = "The number of web VMs to create."
+#   type        = map(string)
+# }
 
 
 
