@@ -86,7 +86,7 @@ resource "azurerm_linux_virtual_machine" "web_vm" {
   resource_group_name = azurerm_resource_group.my_resource_group.name
   location            = azurerm_resource_group.my_resource_group.location
   tags                = local.common_tags
-  size                = "Standard_DS1_v2" 
+  size                = "Basic_A1" 
   admin_username      = "adminuser"
   network_interface_ids = [
     # Use the element function to get the correct NIC for each VM instance

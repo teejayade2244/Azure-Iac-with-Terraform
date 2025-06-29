@@ -8,7 +8,7 @@
 
 #   admin_ssh_key {
 #     username   = "adminuser"
-#     public_key = local.first_public_key
+#     public_key = file("~/.ssh/id_rsa.pub")
 #   }
 
 #   source_image_reference {
@@ -22,7 +22,8 @@
 #     storage_account_type = "Standard_LRS"
 #     caching              = "ReadWrite"
 #   }
-
+ 
+#  upgrade_mode = "Automatic"
 #   network_interface {
 #     name    = "example"
 #     primary = true
