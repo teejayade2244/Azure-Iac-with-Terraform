@@ -31,9 +31,9 @@
 #     network_security_group_id = azurerm_network_security_group.web_vmss_nsg.id
 
 #     ip_configuration {
-#       name      = "internal"
+#       name      = "web-vmss-ipconfig"
 #       primary   = true
-#       subnet_id = azurerm_subnet.internal.id
+#       subnet_id = azurerm_subnet.web_subnet.id
 #     }
 #   }
 # }
