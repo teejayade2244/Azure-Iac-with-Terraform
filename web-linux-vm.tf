@@ -60,7 +60,7 @@ resource "azurerm_network_security_rule" "web_nic_nsg_rule" {
   source_address_prefix       = "*"
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.my_resource_group.name
-  network_security_group_name = azurerm_network_security_group.web_vmnic_nsg.name
+  network_security_group_name = azurerm_network_security_group.web_vmnic_nsg[each.key].name
 }
 
 resource "azurerm_linux_virtual_machine" "web_vm" {

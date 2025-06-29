@@ -33,7 +33,7 @@ resource "azurerm_subnet" "web_subnet" {
 
 resource "azurerm_subnet_network_security_group_association" "web_subnet_nsg_association" {
   subnet_id                 = azurerm_subnet.web_subnet.id
-  depends_on = [ azurerm_network_security_group.web_subnet_nsg_rule ]
+  depends_on = [azurerm_network_security_group.web_subnet_nsg]
   network_security_group_id = azurerm_network_security_group.web_subnet_nsg.id
 }
 
