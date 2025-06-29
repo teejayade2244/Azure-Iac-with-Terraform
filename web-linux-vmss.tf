@@ -87,7 +87,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "web_vmss" {
   network_interface {
     name    = "web-vmss-nic"
     primary = true
-    network_security_group_id = azurerm_network_security_group.web_vmss_nsg.id
+    network_security_group_id = azurerm_network_security_group.web_vmnic_nsg.id
 
     ip_configuration {
       name      = "web-vmss-ipconfig"
