@@ -53,13 +53,13 @@ resource "azurerm_lb_rule" "web_lb_rule" {
 }
 
  # Associate the network interface with the backend address pool
-resource "azurerm_network_interface_backend_address_pool_association" "web_nic_backend_pool_association" {
-  # count                   = var.web_vm_instance_count
-  for_each                = var.web_vm_instance_count
-  network_interface_id    = azurerm_network_interface.web_nic[each.key].id
-  ip_configuration_name   = azurerm_network_interface.web_nic[each.key].ip_configuration[0].name
-  backend_address_pool_id  = azurerm_lb_backend_address_pool.web_lb_backend_pool.id
-}
+# resource "azurerm_network_interface_backend_address_pool_association" "web_nic_backend_pool_association" {
+#   # count                   = var.web_vm_instance_count
+#   for_each                = var.web_vm_instance_count
+#   network_interface_id    = azurerm_network_interface.web_nic[each.key].id
+#   ip_configuration_name   = azurerm_network_interface.web_nic[each.key].ip_configuration[0].name
+#   backend_address_pool_id  = azurerm_lb_backend_address_pool.web_lb_backend_pool.id
+# }
 
 # # NAT rule for SSH access to the web load balancer
 # # This allows SSH access to the web load balancer on port 1022, mapping it to port 22 on the backend VMs.
