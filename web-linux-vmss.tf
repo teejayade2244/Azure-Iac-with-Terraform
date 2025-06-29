@@ -24,8 +24,8 @@ resource "azurerm_linux_virtual_machine_scale_set" "web_vmss" {
   name                = "${local.resource_name_prefix}-web-vmss"
   location            = azurerm_resource_group.my_resource_group.location
   resource_group_name = azurerm_resource_group.my_resource_group.name
-  sku                 = "Standard_F2"
-  instances           = 3
+  sku                 = "Standard_F1"
+  instances           = 2
   admin_username      = "adminuser"
 
   admin_ssh_key {
