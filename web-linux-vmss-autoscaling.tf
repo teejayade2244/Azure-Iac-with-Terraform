@@ -1,4 +1,4 @@
-resource "azurerm_monitor_autoscale_setting" "example" {
+resource "azurerm_monitor_autoscale_setting" "web_vmss_autoscale" {
   name                = "${local.resource_name_prefix}-web-vmss-autoscale"
   resource_group_name = azurerm_resource_group.my_resource_group.name
   location            = azurerm_resource_group.my_resource_group.location
@@ -98,8 +98,6 @@ resource "azurerm_monitor_autoscale_setting" "example" {
 # Notification settings for autoscale events
   notification {
     email {
-      send_to_subscription_administrator    = true
-      send_to_subscription_co_administrator = true
       custom_emails                         = ["adebunmi33@gmail.com"]
     }
   }
