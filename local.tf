@@ -7,3 +7,4 @@ locals {
     region      = var.resource_group_location
   }
 }
+
