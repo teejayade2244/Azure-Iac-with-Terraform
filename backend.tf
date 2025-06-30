@@ -1,8 +1,8 @@
 terraform {
   backend "azurerm" {
     resource_group_name  = "my-resource-group-ukwest-dev"
-    storage_account_name = "ukwest-dev-storageaccount"
-    container_name       = "ukwest-dev-container"
+    storage_account_name = "ukwestdev-storageaccount"   # <-- match exactly
+    container_name       = "ukwestdev-container"        # <-- match exactly
     key                  = "terraform.tfstate"
   }
 }
